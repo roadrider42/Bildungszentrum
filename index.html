@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  ERZEUGTE DATEI. Nicht von Hand aendern: Der Wortlaut steht in
+  loginseite-texte.md, das Gerüst in werkzeug/vorlage.html, gebaut wird mit
+  `python3 -I werkzeug/bauen.py`. Wer hier etwas aendert, verliert es beim
+  naechsten Bauen.
+
+  Aufbau und Schnitt nach der Seite der Büssemaker PLUS Akademie (Repo bplus,
+  index.html): Kopf mit zwei Wegen (anmelden, Zugang anfragen), Einstieg,
+  häufige Fragen, Fuß. Alles andere dieser Seite (Themen, Probeabschnitt, Für
+  wen, Warum aus dieser Hand, So läuft es) ist mit Absicht nicht übernommen:
+  einfachste Stufe, nur Eingangstür.
+
+  Keine Bilder, kein Logo, kein Skript, kein Formular, kein externer Aufruf,
+  kein Zählpixel. Die Schrift ist Inter, wenn sie installiert ist, sonst die
+  Systemschrift: ein Aufruf an einen Schriftdienst würde beim ersten Laden eine
+  Verbindung in die USA aufbauen.
+
+  FARBEN, gerechnet nach WCAG (Kontrast):
+    Fließtext #2b3a42 auf Weiß 11,75 · auf Hell #f4f8f8 10,99
+    Überschrift #0b1a21 auf Weiß 17,74
+    Akzent #17636b auf Weiß 6,92 · auf Hell 6,47; Weiß auf Akzent (Knopf) 6,92,
+    beim Darüberfahren #0f5159: 8,97
+    Fuß: Weiß auf #26343b 12,83 · Links #f4f8f8 auf #26343b 11,99
+  Der Akzent ist ein abgedunkelter Ton der plinyoo-Hauptfarbe (#6FB3B8). Eine
+  Markenfarbe von Wicker ist NICHT übernommen (nicht gelesen, nicht abgestimmt).
+  Die Büssemaker-Farben (Rot, Petrol) sind deren Marke und stehen hier nicht.
+-->
+<meta name="robots" content="noindex, nofollow">
+<title>Bildungszentrum · Lern- und Weiterbildungsplattform für Pflege-Auszubildende</title>
+<meta name="description" content="Dies ist ein Testprojekt zur digitalen Unterstützung der Vor- und Nachbereitung von Ausbildungsinhalten. Kurze Lernkarten zur Prüfungsvorbereitung in der Pflegeausbildung. Anmelden oder Zugang anfragen.">
+<style>
+  :root {
+    --text:          #2b3a42;
+    --stark:         #0b1a21;
+    --leise:         #5b6c74;
+    --akzent:        #17636b;
+    --akzent-dunkel: #0f5159;
+    --grund:         #ffffff;
+    --hell:          #f4f8f8;
+    --rand:          #d7e4e6;
+    --fuss:          #26343b;
+    --fuss-link:     #f4f8f8;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--grund);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; }
+  h1 { font-size: clamp(1.9rem, 5.6vw, 3rem); font-weight: 700; color: var(--stark); letter-spacing: -.015em; }
+  h2 { font-size: clamp(1.4rem, 4vw, 2.25rem); font-weight: 600; color: var(--stark); }
+  p  { margin: 0 0 1rem; }
+  a  { color: var(--akzent); }
+
+  .huelle { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+  section { padding: clamp(3rem, 8vw, 7.5rem) 0; }
+  section.hell { background: var(--hell); }
+
+  header { background: var(--grund); border-bottom: 1px solid var(--rand); }
+  .kopf { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 72px; flex-wrap: wrap; padding-top: .5rem; padding-bottom: .5rem; }
+  .marke { font-weight: 700; font-size: 1.1rem; color: var(--stark); letter-spacing: .01em; }
+  .marke small {
+    display: block; font-size: .78rem; font-weight: 600; color: var(--akzent);
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+  .marke small i {
+    display: inline-block; width: .5rem; height: .5rem;
+    background: var(--akzent); margin-right: .45rem; vertical-align: .04em;
+  }
+
+  /* Schaltflaechen: Radius 6px, Mindesthoehe 48px, damit sie auf dem Telefon
+     zu treffen sind. Zwei Wege in der Kopfzeile: anmelden, wer schon dabei
+     ist; anfragen, wer noch nicht. */
+  .kopfknoepfe { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .knopf {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: .875rem 1.5rem;
+    border-radius: 6px; font-weight: 600; font-size: 1rem;
+    text-decoration: none; border: 2px solid transparent;
+    transition: background-color .15s, color .15s;
+  }
+  .knopf-voll { background: var(--akzent); color: #fff; }
+  .knopf-voll:hover { background: var(--akzent-dunkel); }
+  .knopf-rand { border-color: var(--akzent); color: var(--akzent); background: transparent; }
+  .knopf-rand:hover { background: var(--hell); }
+  a:focus-visible, summary:focus-visible { outline: 3px solid var(--akzent); outline-offset: 3px; }
+
+  .augenbraue {
+    display: inline-block; margin-bottom: 1.1rem;
+    font-size: .85rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--akzent);
+  }
+  .titel { max-width: 46rem; }
+  .titel .vorspann { font-size: clamp(1.05rem, 2.3vw, 1.2rem); }
+  .knopfreihe { display: flex; flex-wrap: wrap; gap: .875rem; margin-top: 2rem; }
+
+  .fragen { max-width: 46rem; }   /* gleiche Spalte wie der Einstieg, damit die linken Kanten fluchten */
+  details { border-bottom: 1px solid var(--rand); padding: .5rem 0; }
+  details:first-of-type { border-top: 1px solid var(--rand); }
+  details summary {
+    cursor: pointer; font-weight: 600; color: var(--stark); list-style: none;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    min-height: 48px;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "+"; color: var(--akzent); font-weight: 700; font-size: 1.3rem; }
+  details[open] summary::after { content: "–"; }
+  details p { margin: .2rem 0 1rem; }
+
+  footer { background: var(--fuss); color: #fff; padding: 3rem 0; }
+  footer p { color: #fff; }
+  footer .traeger { max-width: 44rem; }
+  /* Links im Fuss hell auf dunkel (11,99:1); der Akzent waere hier unlesbar. */
+  footer a { color: var(--fuss-link); text-decoration: underline; }
+  .fussreihe { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; align-items: center; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #4d5b62; padding-top: 1rem; }
+  .fussreihe nav { display: flex; flex-wrap: wrap; gap: 0 1.4rem; }
+  .fussreihe nav a { display: inline-flex; align-items: center; min-height: 44px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="huelle kopf">
+    <div class="marke" data-wortlaut="wicker-name">Bildungszentrum<small><i></i>Lernbereich</small></div>
+    <div class="kopfknoepfe">
+      <a class="knopf knopf-rand" href="https://app.plinyoo.com/login">Anmelden</a>
+      <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Zugang anfragen</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <div class="huelle titel">
+      <span class="augenbraue">Prüfungsvorbereitung für die Pflegeausbildung</span>
+      <h1>Kurz üben. Sicher in die Prüfung.</h1>
+      <p class="vorspann" data-wortlaut="pilot-thema">Lernkarten für Auszubildende in der Pflege – aufbereitet in kurzen Einheiten, mit Fragen und einer Rückmeldung zu jeder Antwort. Zum Start: Medikamentenmanagement im Krankenhaus.</p>
+      <p>Nicht als Unterricht mit festen Zeiten, sondern als Wissen, das auf dem Telefon bereitliegt: in der Pause, auf dem Heimweg, vor der Klausur.</p>
+      <div class="knopfreihe">
+        <a class="knopf knopf-voll" href="https://app.plinyoo.com/fruehe-mitgestalter?brand=plinyoo">Zugang anfragen</a>
+        <a class="knopf knopf-rand" href="#fragen">Häufige Fragen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hell" id="fragen">
+    <div class="huelle fragen">
+      <h2>Häufige Fragen</h2>
+      <details data-wortlaut="zugang-wicker">
+        <summary>Wie komme ich hinein?</summary>
+        <p>Über „Zugang anfragen“ oder mit einer Einladung des Bildungszentrums. Der Zugang ist zunächst auf eingeladene Auszubildende begrenzt.</p>
+      </details>
+      <details data-wortlaut="app-anleitung">
+        <summary>Muss ich etwas installieren?</summary>
+        <p>Nein. Der Lernbereich läuft im Browser, auf dem Telefon wie am Rechner. Ein Konto entsteht über eine Einladung.</p>
+        <p>Wer möchte, legt den Lernbereich trotzdem wie eine App auf den Startbildschirm. Das geht ohne App-Store (technisch eine „Progressive Web App“, kurz PWA). Dazu zuerst „Anmelden“ öffnen; die Schritte gelten für den Lernbereich, nicht für diese Startseite.</p>
+        <p><b>iPhone und iPad:</b> In Safari auf „Teilen“ tippen (Quadrat mit Pfeil nach oben), „Zum Home-Bildschirm“ wählen und „Hinzufügen“ bestätigen.</p>
+        <p><b>Android:</b> In Chrome auf das Menü (drei Punkte) tippen, „App installieren“ oder „Zum Startbildschirm hinzufügen“ wählen und bestätigen.</p>
+        <p>Danach liegt ein Symbol namens „Plinyoo“ auf dem Startbildschirm, und der Lernbereich öffnet sich wie eine App, ohne Adressleiste. Die Namen der Menüpunkte können je nach Gerät und Version etwas anders lauten.</p>
+      </details>
+      <details data-wortlaut="pilot-thema">
+        <summary>Was lerne ich hier?</summary>
+        <p>Zum Start Lernkarten zum Medikamentenmanagement im Krankenhaus, zum Beispiel zu Lagerung, Betäubungsmitteln, Richten und Verabreichen. Weitere Themen folgen nach Absprache mit dem Bildungszentrum.</p>
+      </details>
+      <details>
+        <summary>Wer schreibt und prüft die Inhalte?</summary>
+        <p>Die Lernkarten sind von Fachpersonen des Bildungszentrums freigegeben.</p>
+      </details>
+      <details>
+        <summary>Ersetzen die Inhalte den Unterricht oder die Standards meines Hauses?</summary>
+        <p>Nein. Die Karten sind eine Lernhilfe zum Üben. Im Zweifel gilt der Standard Ihres Ausbildungsbetriebs und die Anweisung Ihrer Praxisanleitung.</p>
+      </details>
+      <details>
+        <summary>Wer sieht meine Antworten?</summary>
+        <p>Niemand außer dem Lernenden sieht die Antworten.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="huelle">
+    <p class="traeger" data-wortlaut="wicker-name">Das Lernangebot des Bildungszentrums läuft auf der Lernplattform <a href="https://www.plinyoo.com">plinyoo</a>. Fachliche Freigabe: Bildungszentrum. Betrieb der Plattform, Datenhaltung und Rechtstexte: plinyoo.</p>
+    <div class="fussreihe">
+      <span>Wicker-Bildungszentrum · Lernbereich – betrieben von plinyoo.</span>
+      <nav>
+        <a href="https://www.plinyoo.com/#/impressum">Impressum</a>
+        <a href="https://www.plinyoo.com/#/datenschutz">Datenschutz</a>
+        <a href="https://www.plinyoo.com/#/urheberrecht">Urheberrecht</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
