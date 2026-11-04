@@ -20,31 +20,36 @@
   Systemschrift: ein Aufruf an einen Schriftdienst würde beim ersten Laden eine
   Verbindung in die USA aufbauen.
 
-  FARBEN, gerechnet nach WCAG (Kontrast):
-    Fließtext #2b3a42 auf Weiß 11,75 · auf Hell #f4f8f8 10,99
-    Überschrift #0b1a21 auf Weiß 17,74
-    Akzent #17636b auf Weiß 6,92 · auf Hell 6,47; Weiß auf Akzent (Knopf) 6,92,
-    beim Darüberfahren #0f5159: 8,97
-    Fuß: Weiß auf #26343b 12,83 · Links #f4f8f8 auf #26343b 11,99
-  Der Akzent ist ein abgedunkelter Ton der plinyoo-Hauptfarbe (#6FB3B8). Eine
-  Markenfarbe von Wicker ist NICHT übernommen (nicht gelesen, nicht abgestimmt).
-  Die Büssemaker-Farben (Rot, Petrol) sind deren Marke und stehen hier nicht.
+  FARBEN, beim Bauen nach WCAG berechnet (Kontrastverhältnis; verlangt sind 4,5):
+    text auf grund: 8,18  (Fließtext)
+    text auf hell: 7,91  (Fließtext im hellen Abschnitt)
+    stark auf grund: 10,86  (Überschriften)
+    leise auf grund: 4,69  (Absatz der Fehlerseite)
+    akzent auf grund: 5,92  (Links, Augenbraue, Rahmenknopf)
+    akzent auf hell: 5,72  (Links im hellen Abschnitt, Rahmenknopf beim Darüberfahren)
+    weiß auf akzent: 5,92  (Schrift im Vollknopf)
+    weiß auf akzent-dunkel: 7,50  (Vollknopf beim Darüberfahren)
+    weiß auf fuss: 10,86  (Schrift im Fuß)
+    fuss-link auf fuss: 10,51  (Links im Fuß)
+  Geändert werden die Farben nur im :root-Block der Vorlage; die Fehlerseite
+  übernimmt ihn.
 -->
 <meta name="robots" content="noindex, nofollow">
 <title>Bildungszentrum · Lern- und Weiterbildungsplattform für Pflege-Auszubildende</title>
 <meta name="description" content="Dies ist ein Testprojekt zur digitalen Unterstützung der Vor- und Nachbereitung von Ausbildungsinhalten. Kurze Lernkarten zur Prüfungsvorbereitung in der Pflegeausbildung. Anmelden oder Zugang anfragen.">
 <style>
+  /* Farben nach wicker.de/bildungszentrum (Stand 04.11.2026). Abgewandelt: Fließtext und das Rot beim Darüberfahren. */
   :root {
-    --text:          #2b3a42;
-    --stark:         #0b1a21;
-    --leise:         #5b6c74;
-    --akzent:        #17636b;
-    --akzent-dunkel: #0f5159;
+    --text:          #495057;
+    --stark:         #3d3d3d;
+    --leise:         #6c757d;
+    --akzent:        #bb2f28;
+    --akzent-dunkel: #9f2822;
     --grund:         #ffffff;
-    --hell:          #f4f8f8;
-    --rand:          #d7e4e6;
-    --fuss:          #26343b;
-    --fuss-link:     #f4f8f8;
+    --hell:          #fcfbfa;
+    --rand:          #dee2e6;
+    --fuss:          #3d3d3d;
+    --fuss-link:     #fcfbfa;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -123,7 +128,7 @@
   footer .traeger { max-width: 44rem; }
   /* Links im Fuss hell auf dunkel (11,99:1); der Akzent waere hier unlesbar. */
   footer a { color: var(--fuss-link); text-decoration: underline; }
-  .fussreihe { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; align-items: center; justify-content: space-between; margin-top: 2rem; border-top: 1px solid #4d5b62; padding-top: 1rem; }
+  .fussreihe { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; align-items: center; justify-content: space-between; margin-top: 2rem; border-top: 1px solid rgba(255, 255, 255, .22); padding-top: 1rem; }
   .fussreihe nav { display: flex; flex-wrap: wrap; gap: 0 1.4rem; }
   .fussreihe nav a { display: inline-flex; align-items: center; min-height: 44px; }
 </style>
